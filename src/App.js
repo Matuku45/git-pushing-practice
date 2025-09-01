@@ -1,7 +1,24 @@
 import { BrowserRouter, Routes, Route, Link, Outlet } from 'react-router-dom';
 
 function Home() {
-  return <h1>Home Page</h1>;
+  const people  = () =>{
+    fetch('https://why-1-4bmh.onrender.com/documents')
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error fetching data:', error));
+  };
+
+
+
+  return (<div>
+  
+    <form>
+
+<button type="button" onClick={people}>Load People</button> 
+
+
+     </form>
+  </div>);
 }
 
 function Products() {
