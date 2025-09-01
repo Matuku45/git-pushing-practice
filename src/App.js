@@ -25,6 +25,8 @@ function CarProducts() {
         <li>Audi</li>
         <li>BMW</li>
         <li>Volvo</li>
+        <li>Toyota</li>
+        <li>Mercedes</li>
       </ul>
     </div>
   );
