@@ -1,25 +1,31 @@
 import { BrowserRouter, Routes, Route, Link, Outlet } from 'react-router-dom';
+import usePeople from "./Hooks/usePeople";
 
-function Home() {
-  const people  = () =>{
-    fetch('https://why-1-4bmh.onrender.com/documents')
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error('Error fetching data:', error));
-  };
 
 
 
-  return (<div>
-  
-    <form>
+function Home() {
+  const { people, loading, error, fetchPeople } = usePeople();
 
-<button type="button" onClick={people}>Load People</button> 
+  return (
+    <div>
+      <h1>Home Page</h1>
+      <button type="button" onClick={fetchPeople}>
+        Load People
+      </button>
 
+      {loading && <p>Loading...</p>}
+      {error && <p>Error: {error.message}</p>}
 
-     </form>
-  </div>);
+      <ul>
+        {people.map((person, index) => (
+          <li key={index}>{person.name}</li> // adapt "name" to your API data
+        ))}
+      </ul>
+    </div>
+  );
 }
+
 
 function Products() {
   return (
