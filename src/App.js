@@ -54,6 +54,7 @@ function BikeProducts() {
         <li>Suzuki</li>
         <li>Honda</li>
         <li>Tuku</li>
+        <li>hero</li>
       </ul>
     </div>
   );
