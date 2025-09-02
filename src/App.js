@@ -1,30 +1,20 @@
-import { BrowserRouter, Routes, Route, Link, Outlet } from 'react-router-dom';
-import usePeople from "./Hooks/usePeople";
+import { BrowserRouter, Routes, Route, Link, Outlet } from "react-router-dom";
 
-
-
-
-function Home() {
-  const { people, loading, error, fetchPeople } = usePeople();
+const Home = () => {
+  const [data] = useFetch("https://jsonplaceholder.typicode.com/todos");
 
   return (
-    <div>
-      <h1>Home Page</h1>
-      <button type="button" onClick={fetchPeople}>
-        Load People
-      </button>
-
-      {loading && <p>Loading...</p>}
-      {error && <p>Error: {error.message}</p>}
-
-      <ul>
-        {people.map((person, index) => (
-          <li key={index}>{person.name}</li> // adapt "name" to your API data
-        ))}
-      </ul>
-    </div>
+    <>
+      {data &&
+        data.map((item) => {
+          return <p key={item.id}>{item.title}</p>;
+        })}
+    </>
   );
-}
+};
+
+
+// ... rest of App.js remains the same
 
 
 function Products() {
@@ -63,6 +53,7 @@ function BikeProducts() {
         <li>Yamaha</li>
         <li>Suzuki</li>
         <li>Honda</li>
+        <li>Tuku</li>
       </ul>
     </div>
   );
@@ -94,7 +85,5 @@ function App() {
     </BrowserRouter>
   );
 }
-
-
 
 export default App;
